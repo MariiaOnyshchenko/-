@@ -1,0 +1,61 @@
+import sqlite3
+# 1
+conn = sqlite3.connect('b_book.db')
+c = conn.cursor()
+# 2. Підключитись до новоствореної БД – це робиться автоматично для sqlite
+
+# 3
+# c.execute('''
+#     CREATE TABLE tAuth (
+#         	"AuthorId"  INTEGER NOT NULL,
+#         	"AuthorFirstN" VARCHAR (50),
+#         	"AuthorLastN" VARCHAR (50),
+#         	"AuthorAge" INTEGER,
+# PRIMARY KEY("AuthorId")
+#  )''')
+
+# 4
+# c.execute('''INSERT INTO tAuth VALUES
+#     (1, 'Арагорндр', 'Дунедайнович', 87),
+#     (2, 'Весемірдр', 'Каерморхенович', 338),
+#     (3, 'Каланта', 'Львівна', 45),
+#     (4, 'Селуна', 'Фаерунівна', 10000),
+#     (5, 'Елена', 'Троянська', 100)
+# ''')
+
+# 5
+# c.execute("SELECT name FROM sqlite_master WHERE type='table'")
+# tables = c.fetchall()
+# print("Таблиці в 'b_book':")
+# for table in tables:
+#     table_name = table[0]
+#     print(f"Таблиця: {table_name}")
+#     c.execute(f"SELECT * FROM {table_name}")
+#     print(c.fetchall())
+
+# 6
+# c.execute("SELECT COUNT(*) FROM tAuth")
+# print(c.fetchone()[0])
+
+# 7
+# c.execute("SELECT * FROM tAuth ORDER BY AuthorId ASC")
+# print(c.fetchall())
+
+# 8
+# c.execute("SELECT * FROM tAuth ORDER BY AuthorAge DESC LIMIT 1")
+# print(c.fetchall())
+
+# 9
+# c.execute("SELECT * FROM tAuth WHERE AuthorFirstN LIKE '%др'")
+# print(c.fetchall())
+
+# 10
+# c.execute('''INSERT INTO tAuth VALUES
+#     (6, 'Полдр', 'Атрейдсович', 17),
+#     (7, 'Володимирдр', 'Харконненович', 50)
+# ''')
+
+# 11
+c.execute("UPDATE tAuth SET AuthorLastN = 'Цинтрівна', AuthorAge = 40 WHERE AuthorId = 3")
+conn.commit()
+conn.close()
